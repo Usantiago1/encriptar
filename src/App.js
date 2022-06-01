@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Loggin from "./loggin";
+
 import Encriptar from "./encriptar";
 
 const App = () =>{
@@ -8,8 +8,7 @@ const App = () =>{
         <>
         <BrowserRouter>
         <Routes>
-            <Route path="/Login" element={<Loggin/>}></Route>
-            <Route path="/Encriptar" element={<Encriptar/>}></Route>
+            <Route path="/" element={<Encriptar/>}></Route>
         </Routes>
         </BrowserRouter>
 

@@ -38,8 +38,7 @@ const Encriptar = () =>{
     if (texto.length <= 0) {
           alert('Error','No fue Posible Encriptar el Texto','error','ok');
     }else{
-        swal('La encriptacion fue correcta')
-        .then(()=>{
+        swal('El proceso de encriptación fue correcto').then(()=>{
           swal(`Resultado del mensaje ingresado: ${result}`)
         })
           const result = valores(texto, caracter);
@@ -56,7 +55,7 @@ const Encriptar = () =>{
     const array = new Array();
 
     for (let a = 0; a < pTexto.length; a++) {
-        index = parseInt(caracter.indexOf(mensaje[a].toLowerCase()));
+        index = parseInt(caracter.indexOf(mensaje[a]));
         array.push(index);        
     }
     while (array.length % 3 != 0) {
@@ -92,6 +91,7 @@ const Encriptar = () =>{
 
     <div className='card mt-5'>
         <div className='card-body mb-2'>
+          <h1 className='text-center fs-4 fst-italic'>Encriptación de Texto</h1>
             <InputText className='form-control' value={mensaje} onChange={(e)=>SetMensaje(e.target.value)}  placeholder="Ingresar Mensaje"></InputText>
             <Button className='mt-5' onClick={iniciar}>Encriptar</Button> 
                     
