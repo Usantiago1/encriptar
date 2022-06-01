@@ -1,19 +1,26 @@
-
+//Importamos el useState para cambiar el estdo de los componentes
 import React,{useState} from 'react';
 
+//Importamos los componentes que seran utilizados
 import {Button} from 'primereact/button';
 import {InputText} from 'primereact/inputtext';
 import {InputTextarea} from 'primereact/inputtextarea';
 
 import swal from 'sweetalert';
 
+
+//Este es el componente principal del proyecto
 const Encriptar = () =>{
 
+  //Declaramos los hook de estado
   const [mensaje, SetMensaje] = useState([]);
   let [result, SetResult] = useState('');
+
+  //Definimos el arreglo 
   const caracter = ["0","a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z","_"];
  
 
+  //Esta funcion sera llamada cuando el proceso halla sido correcto o erroneo
   function alert(pTitle, pText, pIcon, pButton) {
     swal({
       title: pTitle,
@@ -23,19 +30,25 @@ const Encriptar = () =>{
     });
   }
 
+
+  //En esta funcion tenemos definido el proceso que esta llamado a la funcion de encriptar y llamamos a la funcion de alert
  function iniciar() {
    let texto = String(mensaje);
    texto = texto.replace(/\s/gi, "0");
     if (texto.length <= 0) {
           alert('Error','No fue Posible Encriptar el Texto','error','ok');
     }else{
-          alert('Correcto','Encriptacion correcta','success','ok');
+        swal('La encriptacion fue correcta')
+        .then(()=>{
+          swal(`Resultado del mensaje ingresado: ${result}`)
+        })
           const result = valores(texto, caracter);
           encriptado(result);
           
         }
 }
 
+  //Funcion que hace las operaciones para el encriptado
   function valores(pTexto, pCaracter) {
     const mensaje = pTexto.split("");
     const caracter = pCaracter;
@@ -53,6 +66,7 @@ const Encriptar = () =>{
 
   }
 
+  //Funcion que encripta el mensaje ingresado
   function encriptado(pMensaje) {
     const mensaje = pMensaje;
     const matriz = [[1,2,1],[0,-1, 3], [2, 1, 0]];
@@ -79,7 +93,6 @@ const Encriptar = () =>{
     <div className='card mt-5'>
         <div className='card-body mb-2'>
             <InputText className='form-control' value={mensaje} onChange={(e)=>SetMensaje(e.target.value)}  placeholder="Ingresar Mensaje"></InputText>
-            <InputTextarea className='form-control mt-5' value={result} onChange={(e)=>SetResult(e.target.value)}  ></InputTextarea>   
             <Button className='mt-5' onClick={iniciar}>Encriptar</Button> 
                     
         </div>
